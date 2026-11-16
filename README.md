@@ -1,45 +1,75 @@
 # SkyCast
 
-SkyCast is the FourCast team's Android weather application for CPRG 303. It is built with React Native, Expo SDK 58, Expo Router, and TypeScript.
+SkyCast is a weather forecast app developed by the FourCast team for CPRG 303 – Mobile Application Development.
 
-## Planned features
+## Features
 
-- Current temperature and weather condition
+- Search weather by city
+- Current temperature and weather conditions
 - Humidity and wind speed
-- Five-day forecast
-- Search by city
+- Five-day weather forecast
 
-The team plans to use OpenWeather. Its free 5 day / 3 hour forecast response must be grouped into one summary per day in the app.
+## Tech stack
 
-## Setup
+- React Native
+- Expo
+- Expo Router
+- TypeScript
+- OpenWeather API
 
-1. Install dependencies with `npm install`.
-2. Copy `.env.example` to `.env`.
-3. Add an OpenWeather API key to `EXPO_PUBLIC_OPENWEATHER_API_KEY`.
-4. Run `npm start`, then open the project on Android with Expo Go.
+## Getting started
 
-Never commit `.env` or a real API key. `EXPO_PUBLIC_` values are included in the client app, so this key is not a secret at runtime; restrict and monitor it in the provider dashboard.
+### 1. Install dependencies
+
+```bash
+npm install
+```
+
+### 2. Configure the API key
+
+Create a `.env` file from the example:
+
+```bash
+cp .env.example .env
+```
+
+Add your OpenWeather API key:
+
+```env
+EXPO_PUBLIC_OPENWEATHER_API_KEY=your_api_key
+```
+
+Do not commit the `.env` file or a real API key.
+
+### 3. Start the project
+
+```bash
+npm start
+```
 
 ## Project structure
 
 ```text
 src/
-  app/                 Expo Router screens and layouts only
-  features/            Feature-owned UI, hooks, services, and tests
-    city-search/
-    current-weather/
-    forecast/
-    weather-details/
-  shared/              Code reused by two or more features
-    config/
-    theme/
-    types/
-docs/
-  TEAM_WORKFLOW.md     Ownership, branches, and pull-request workflow
+  app/                    Routes and screen composition
+  features/
+    city-search/          Search and city selection
+    current-weather/      Current conditions, humidity, and wind
+    forecast/             Five-day forecast
+    weather-dashboard/    Main weather screen and UI states
+  shared/
+    config/               Environment configuration
+    theme/                Shared design tokens
+    types/                Shared application models
 ```
 
-Keep feature-specific code inside its feature. Move code to `shared` only when at least two features use it. Export a feature's public API from its `index.ts` rather than importing its internal files from another feature.
+Feature-specific code stays inside its feature. Code should move to `shared` only when it is used by more than one feature.
 
-## Quality checks
+## Available scripts
 
-Run `npm run check` before opening a pull request. Also test the changed flow on Android.
+```bash
+npm start          # Start Expo
+npm run lint       # Run ESLint
+npm run typecheck  # Check TypeScript
+npm run check      # Run all project checks
+```
