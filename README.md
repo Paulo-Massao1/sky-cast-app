@@ -33,10 +33,10 @@ Create a `.env` file from the example:
 cp .env.example .env
 ```
 
-Add your OpenWeather API key:
+Ask the team for the shared OpenWeather API key and add it to your local `.env` file. Every team member should use the same team key:
 
 ```env
-EXPO_PUBLIC_OPENWEATHER_API_KEY=your_api_key
+EXPO_PUBLIC_OPENWEATHER_API_KEY=team_api_key
 ```
 
 Do not commit the `.env` file or a real API key.
