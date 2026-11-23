@@ -1,2 +1,4 @@
-// Public exports for the city-search feature belong here.
-export {};
+
+export { default as CitySearch } from './CitySearch';
+export { searchCities } from './citySearchApi';
+export type { City } from './types';
