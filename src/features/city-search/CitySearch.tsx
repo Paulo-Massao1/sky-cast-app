@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import {
   View,
@@ -12,9 +11,10 @@ import {
 
 import { searchCities } from './citySearchApi';
 import type { City } from './types';
+import type { Coordinates } from '../../shared/types/weather';
 
 interface CitySearchProps {
-  onCitySelect: (city: City) => void;
+  onCitySelect: (coordinates: Coordinates) => void;
 }
 
 export default function CitySearch({
@@ -37,7 +37,7 @@ export default function CitySearch({
     setCities([]);
 
     try {
-      const results = await searchCities(query);
+      const results = await searchCities(query.trim());
       setCities(results);
 
       if (results.length === 0) {
@@ -51,10 +51,16 @@ export default function CitySearch({
   };
 
   const handleSelect = (city: City) => {
+    const coordinates: Coordinates = {
+      latitude: city.lat,
+      longitude: city.lon,
+    };
+
     setQuery(city.name);
     setCities([]);
     setError('');
-    onCitySelect(city);
+
+    onCitySelect(coordinates);
   };
 
   return (
